@@ -1,13 +1,18 @@
 #coding:utf-8
-import random,os
+import random,os,sys,io
 
 cac,cacc='#','|'
 dire,fich='./','vbs.nath'
 
+def inp(txt):
+    vp=sys.version_info
+    if vp[0]==2: return inp(txt)
+    else: return input(txt)
+    
 def a():
     vbs=[]
     if fich in os.listdir(dire):
-        f=open(dire+fich,'r').read().split(cacc)
+        f=io.open(dire+fich,'r',encoding="utf-8").read().split(cacc)
         for ff in f:
             g=ff.split(cac)
             if len(g)>2: vbs.append(g)
@@ -38,7 +43,7 @@ def b(vbs):
         print(tt)
         for y in range(0,4):
             tt=str(y)+" - "
-            vv.append( raw_input(tt) )
+            vv.append( inp(tt) )
         if v==vv:
             pts+=1
             print("juste ! ;)")
@@ -52,7 +57,7 @@ def c():
     tt=''
     for x in range(0,4):
         txt=str(x)+" : "
-        tt+=raw_input(txt)+cac
+        tt+=inp(txt)+cac
     tt=tt[:-1]
     f=open(dire+fich,'a')
     f.write(cacc+tt)
@@ -62,7 +67,7 @@ def d():
     aa=''
     while aa != 'q':
         c()
-        aa=raw_input(">>> ")
+        aa=inp(">>> ")
 
 #d()
 b(a())
